@@ -1,19 +1,20 @@
 import React from 'react';
-import { useFetch } from '../hooks/useFetch';
+import { useFetch } from '../../hooks/useFetch';
 import { useParams } from 'react-router-dom';
+
+import { Screen } from './styled';
 
 export default function CarDetails() {
   const { id } = useParams();
   const { data } = useFetch(`cars/${id}`)
 
   if (!data) {
-    return <p>Carregando...</p>
+    return <p>Loading...</p>
   }
 
   return (
-    <>
-      <h1>{data?.name}</h1>
-      <span>#{data?.id}</span>
-    </>
+    <Screen>
+      <h1>#{data?.id} - {data?.name}</h1>
+    </Screen>
   )
 }
